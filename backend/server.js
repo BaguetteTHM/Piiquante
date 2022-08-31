@@ -1,5 +1,5 @@
-const http = require('http');
-const app = require('./app');
+const http = require('http'); // importe la librairie http
+const app = require('./app'); // importe l'application express
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -12,8 +12,8 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const port = normalizePort(process.env.PORT ||'3000');
+app.set('port', port); //
 
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
