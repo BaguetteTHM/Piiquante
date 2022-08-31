@@ -2,7 +2,8 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
-const saucesRoutes = require('./routes/sauces')
+const saucesRoutes = require('./routes/sauces');
+const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://Schmoo:ztbfY3WtRF4YrwEz@cluster0.xgzqkkd.mongodb.net/test',
   { useNewUrlParser: true,
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
   next();
 }); // gère les header pour les CORS
 
-app.use('/api/sauces', saucesRoutes); // importe le router
-
+app.use('/api/sauces', saucesRoutes); // importe le router sauces
+app.use('/api/auth',userRoutes); // importe le routeur user
 
 module.exports = app; //exporte l'app express
