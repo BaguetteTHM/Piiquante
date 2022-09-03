@@ -25,6 +25,6 @@ app.use((req, res, next) => {
 
 app.use('/api/sauces', saucesRoutes); // importe le router sauces
 app.use('/api/auth',userRoutes); // importe le routeur user
-app.use('./images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app; //exporte l'app express
