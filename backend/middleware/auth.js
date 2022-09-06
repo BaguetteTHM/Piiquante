@@ -9,8 +9,12 @@ module.exports = (req, res, next) => {
            userId: userId
        };
        console.log(decodedToken,token)
-	next();
-   } catch(error) {
+    if(req.body.userId && req.body.userId !== userId) {
+        res.status(403).json({ message: 'Requête non autorisée' });
+    } else {
+        next();
+    }
+    } catch(error) {
        res.status(401).json({ error });
    }
 };

@@ -15,4 +15,7 @@ router.get('/',auth,saucesCtrl.getAllSauces );
 
 router.get('/:id',auth,saucesCtrl.getOneSauce);
 
+router.post('/:id/like', auth, saucesCtrl.likeSauce);
+
+
 module.exports = router; // exporte le router
