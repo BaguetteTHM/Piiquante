@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
        req.auth = {
            userId: userId
        };
-       console.log(decodedToken,token)
     if(req.body.userId && req.body.userId !== userId) {
         res.status(403).json({ message: 'Requête non autorisée' });
     } else {
