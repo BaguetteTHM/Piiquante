@@ -6,20 +6,20 @@ const passwordValidator = require('password-validator');
 const passwordSchema = new passwordValidator();
 
 passwordSchema
-.is().min(8)                                    // Minimum length 8
-.is().max(100)                                  // Maximum length 100
-.has().uppercase()                              // Must have uppercase letters
-.has().lowercase()                              // Must have lowercase letters
-.has().digits(1)                                // Must have at least 1 digits
-.has().not().spaces()                           // Should not have spaces
-.is().not().oneOf(['Passw0rd', 'Password123']);
+.is().min(8)                                    // Minimum 8 caractères
+.is().max(100)                                  // Maximum 100 caractères
+.has().uppercase()                              // DOIT avoir une majuscule
+.has().lowercase()                              // DOIT avoir une minuscule
+.has().digits(1)                                // DOIT avoir 1 chiffre
+.has().not().spaces()                           // NE DOIT PAS voir d'espace
+.is().not().oneOf(['Passw0rd', 'Password123']); // N'EST PAS l'un de ces mots de passe
 
 exports.signup = (req, res, next) => {
     if(!validator.isEmail(req.body.email, {blacklisted_chars: '$="'})){
         res.status(400).json({ error: "Le format de l'adresse email est invalide"});
         
     } else if(!passwordSchema.validate(req.body.password)){
-        res.status(400).json({ error: "Le mot de passe doit contenir au minimum 2 caractères."});
+        res.status(400).json({ error: passwordSchema.validate(req.body.password,{list: true})});
         
             }  else{
                 bcrypt.hash(req.body.password, 10)
