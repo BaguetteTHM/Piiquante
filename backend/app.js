@@ -23,13 +23,15 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
-}); // gère les header pour les CORS
+}); // gère les headers pour les CORS
 
 app.use('/api/sauces', saucesRoutes); // importe le router sauces
 app.use('/api/auth',userRoutes); // importe le routeur user
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use(helmet()); //protection contre les vulnérabilités headers
+app.disable('x-powered-by'); // cache le framework js dans les headers réponse
+
 app.use(mongoSanitize()); // protection contre les injection js dans mongoDB
 
 
