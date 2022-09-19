@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 app.use('/api/sauces', saucesRoutes); // importe le router sauces
 app.use('/api/auth',userRoutes); // importe le routeur user
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));// path pour fichiers image
 
 app.use(helmet()); // protection contre les vulnérabilités headers
 app.disable('x-powered-by'); // cache le framework js dans les headers réponse
