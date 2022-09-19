@@ -1,6 +1,7 @@
 const http = require('http'); // importe la librairie http
 const app = require('./app'); // importe l'application express
 
+// gestion de la validité du port
 const normalizePort = val => {
   const port = parseInt(val, 10);
 
@@ -15,6 +16,7 @@ const normalizePort = val => {
 const port = normalizePort(process.env.PORT ||'3000');
 app.set('port', port); //
 
+// gestion des erreurs serveur
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -37,6 +39,7 @@ const errorHandler = error => {
 
 const server = http.createServer(app);
 
+// init serveur
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
